@@ -61,16 +61,35 @@ public class ItemController {
     }
 
     @PostMapping("/items/{itemId}/edit")
-    public String updateItem(@ModelAttribute("form") BookForm bookForm, @PathVariable String itemId){
-        Book book = new Book();
-        book.setId(book.getId());
-        book.setName(bookForm.getName());
-        book.setPrice(bookForm.getPrice());
-        book.setStockQuantity(bookForm.getStockQuantity());
-        book.setIsbn(bookForm.getIsbn());
-        book.setAuthor(book.getAuthor());
+    public String updateItem(@ModelAttribute("form") BookForm bookForm, @PathVariable long itemId){
+        /*
+        *준영속 엔티티.
+        *영속성 컨텍스트가 더는 관리하지 않는 엔티티를 말한다. DB에 저장되어서 식별자가 존재하는 상태.
+        *임의로 만들어낸 엔티티도 기존 식별자를 가지고 있다면 준영속 엔티티로 볼수가 있다
+        *
+        * JPA가 관리하지 않음
+        * 값을 바꿔도 DB에 업데이트가 되지 않음
+        *
+        * 준영속 엔티티를 수정하는 방법
+        *
+        * 더티체킹
+        * 병합
+        *  */
 
-        itemService.saveItem(book);
+//        Book book = new Book();
+//        book.setId(book.getId());
+//        book.setName(bookForm.getName());
+//        book.setPrice(bookForm.getPrice());
+//        book.setStockQuantity(bookForm.getStockQuantity());
+//        book.setIsbn(bookForm.getIsbn());
+//        book.setAuthor(book.getAuthor());
+
+        /*
+        * 컨트롤러에서 어설프게 만들지 말자
+        *
+        * */
+
+        itemService.updateItem(itemId, bookForm.getName(), bookForm.getPrice(), bookForm.getStockQuantity());
         return "redirect:items";
     }
 
