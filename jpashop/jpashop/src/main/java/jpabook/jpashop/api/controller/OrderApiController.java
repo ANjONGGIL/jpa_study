@@ -48,6 +48,19 @@ import java.util.stream.Collectors;
 * DTO로 조회하는 방법도 장단이 있다. 단순하게 쿼리가 한번 나가는것이 항상 좋은것은 아니다.
 * */
 
+//open session in view
+
+/**
+ * 위 옵션을 끄고서 개발해야함
+ *
+ * 위 옵선은 Response가 될 때 connection을 반환
+ *
+ * 핵심 비지니스 로직과 화면이나 API에 맞춘 service를 분리
+ *
+ * 고객 서비스 실시간 API는 OSIV를 끄고 ADMIN 개발의 경우 킨다.
+ *
+ */
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
