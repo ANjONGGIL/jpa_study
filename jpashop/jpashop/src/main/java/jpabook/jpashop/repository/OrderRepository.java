@@ -92,6 +92,11 @@ public class OrderRepository {
          * toOne 관계는 모두 페치조인 한다. (이번 예제에서는 member와 delivery는 페치 조인 하여도 상관없음)
          * 나머지 toMany와 연관된 엔티티는 지연로딩으로 한다.
          * @BatchSize를 사용한다. or yml파일에 설정 추가 (default_batch_fetch_size)
+         *
+         * 위 옵션의 사이즈 만큼 in 쿼리로 조회하게 된다.
+         *
+         * 결론 ToOne 관계는 페치 조인해도 페이징에 영향을 주지 않는다. 따라서 ToOne 관계는 페치조인으로 쿼리 수를
+         * 줄이고 해결하고, 나머지는 hibernate.default_batch_fetch_size로 최적화 하자.
         *
         * */
     }
